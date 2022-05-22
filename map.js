@@ -1,7 +1,5 @@
 'use strict';
 
-import * as Utils from "./utils.js";
-
 export default class Map {
     constructor(width, height, tileSize, subTileSize) {
         this.width = width;
@@ -56,8 +54,8 @@ export default class Map {
             let xOffset = texOffset.x + 1,
                 yOffset = texOffset.y + 1;
 
-            let horSide = i % 2; // 0 = left, 1 = right
-            let verSide = i > 1; // 0 = top,  1 = bottom
+            let horSide = i % 2, // 0 = left, 1 = right
+                verSide = i > 1; // 0 = top,  1 = bottom
 
             let xSubTileOffset = horSide * this.subTileSize,
                 ySubTileOffset = verSide * this.subTileSize;
@@ -81,7 +79,7 @@ export default class Map {
                 yOffset = texOffset.y + !verSide;
             }
 
-            Utils.drawSliced(ctx, tilesImg,
+            ctx.drawImage(tilesImg,
                 xOffset * this.subTileSize,
                 yOffset * this.subTileSize,
                 this.subTileSize, this.subTileSize,

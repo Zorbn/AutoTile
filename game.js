@@ -2,6 +2,7 @@
 
 import Map from "./map.js"
 
+const scale = 2;
 let canvas, ctx, tilesImg;
 let map = new Map(100, 100, 16, 8);
 
@@ -16,8 +17,6 @@ let start = () => {
     map.generateMap();
 };
 
-window.onload = start;
-
 let lastTime = 0;
 
 let update = (time) => {
@@ -31,11 +30,15 @@ let update = (time) => {
     window.requestAnimationFrame(update);
 };
 
-window.requestAnimationFrame(update);
+window.onload = () => {
+    start();
+    window.requestAnimationFrame(update);
+};
 
 let resize = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    ctx.scale(scale, scale);
     ctx.imageSmoothingEnabled = false;
 };
 
